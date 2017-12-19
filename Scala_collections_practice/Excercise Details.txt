@@ -1,0 +1,30 @@
+Let us do exercise to understand collections API in detail
+
+Data can be referred  from the ls2014.tsv file 
+Data is tab separated
+Structure of data
+state
+constituency
+candidate name
+sex
+age
+category
+party name
+party symbol
+general
+postal
+total
+percentage of total votes
+percentage of polled votes
+total number of voters
+Each record contain above attributes. There will be separate record for each contestant from each constituency
+You can save the contents of the file in github to any location on your PC and convert the contents of the file with this code. 
+Make sure you use correct path for fileName
+
+
+Exercises
+Exercise 1 – Get all the distinct constituencies
+Exercise 2 – Get number of constituencies by state sorted in descending order by number of constituencies
+Exercise 3 – Get the number of seats for each party in each state – output should be state,bjp,inc,….
+Exercise 4 – Get the percentage of polled votes of each party – formulla (number of votes per party across all the constituencies / total number of votes all the constituencies)
+Exercise 5 – Get top 10 candidates by margin (number of votes for winner – number of votes for 1st runner)

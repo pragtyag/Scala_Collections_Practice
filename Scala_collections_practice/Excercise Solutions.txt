@@ -1,0 +1,49 @@
+============================================================================================================
+Exercise 2 – Get number of constituencies by state sorted in descending order by number of constituencies
+
+to count and sort the elements in descending order excersice 2 of scala collections from itversity
+
+val dataset_1 = results.map(rec => (rec.split("\t")(0), rec.split("\t")(1))).toSet
+  
+  val dataset_2 = dataset_1.toList.groupBy(rec => rec._1)
+  
+  val dataset_3 = dataset_2.map(rec => (rec._1,rec._2.count(x=> true))).toList.sortBy(rec => rec._2)
+=========================================================================================================
+Exercise 3 – Get the number of seats for each party in each state – output should be state,bjp,inc,….
+
+val statePartyVotes_1 = results.map(rec => ((rec.split("\t")(0), rec.split("\t")(6)), rec.split("\t")(10).toInt))
+
+val final_result = statePartyVotes_1.toList.groupBy(rec=>rec._1)
+
+===============================================================================================================
+
+Exercise 3 - Actual answer. Tried by self 
+
+val f1 = results.map(rec => ( rec.split("\t")(0),rec.split("\t")(6),rec.split("\t")(2))).toSet
+
+val f2 = f1.groupBy(rec => (rec._1,rec._2))
+
+val f3 =  f2.map(rec => (rec._1,rec._2.count(x=> true)))
+
+val f4 = f3.toList.sortBy(rec => rec._1)
+
+f4.take(20).foreach(println)
+
+=================================================================================================================
+Exercise 4 - 
+
+val results = Source.fromFile(fileName).getLines
+val srcMap = results.map(m => (m.split("\t")(6).trim(), m.split("\t")(10).trim().toInt)).toList
+srcMap.groupBy(g => g._1).map(m => (m._1, m._2.map(im1 => im1._2.toInt).sum)).toList.map(im2 => 
+(im2._1, (im2._2.toDouble/totalVotes * 100).toString + "%")).sortBy(s => s._1).foreach(f => println(f._1 + " -->> " + f._2))
+==================================================================================================================
+Excercise 5 - 
+
+val results = Source.fromFile(fileName).getLines
+val srcMap = results.map(m => (m.split("\t")(3).trim(), m.split("\t")(10).trim().toInt)).toList
+
+srcMap.groupBy(rec => (rec._1, rec._2)).map(rec => (rec._1, rec._2.map(rec => (rec._3, rec._4.toInt)).sortBy(rec => -rec._2).take(2).
+  flatMap(f => List(f._1, f._2)))).map(t => (t._2(0), t._2(1).toString.toInt - t._2(3).toString.toInt)).toList.
+  sortBy(-_._2).take(10).foreach(p => (println(p._1 + " ==>> " + p._2)))
+
+==================================================================================================================
